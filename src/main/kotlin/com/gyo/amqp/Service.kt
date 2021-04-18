@@ -17,7 +17,16 @@ import org.springframework.stereotype.Service
 
 
 @Service
-class Service(var connectionFactory: ConnectionFactory): RabbitQueueService {
+class Service(): RabbitQueueService {
+
+    @Autowired
+    lateinit var connectionFactory: ConnectionFactory
+
+    companion object {
+        const val defaultQueue = "defaultQueue"
+        const val defaultExchange = "defaultTopic"
+        const val defaultRouting = "defaultRouting"
+    }
 
     private val log = LoggerFactory.getLogger(this.javaClass)
 

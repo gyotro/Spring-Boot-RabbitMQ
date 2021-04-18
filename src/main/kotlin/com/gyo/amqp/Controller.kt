@@ -23,7 +23,11 @@ class Controller(var template: RabbitTemplate) {
     {
 
         template.run {
-            convertAndSend(CommandLine.defaultExchange, CommandLine.defaultRouting, fattura)
+            val exc = Service.defaultExchange
+            val rout = Service.defaultRouting
+            val qu = Service.defaultQueue
+//            if (exchange != null && queue != null && routing != null)
+            rabbitQueueService.addNewQueue(qu,exc, rout)
             log.info("Sendig to the queue....$fattura")
             return InvoiceConfirmation(fattura.numFatt, Status = "Inviata")
         }
@@ -33,9 +37,9 @@ class Controller(var template: RabbitTemplate) {
     {
 
         return template.run {
-            val exc = exchange ?: CommandLine.defaultExchange
-            val rout = routing ?: CommandLine.defaultRouting
-            val qu = queue ?: CommandLine.defaultQueue
+            val exc = exchange ?: Service.defaultExchange
+            val rout = routing ?: Service.defaultRouting
+            val qu = queue ?: Service.defaultQueue
 //            if (exchange != null && queue != null && routing != null)
             rabbitQueueService.addNewQueue(qu,exc, rout)
             convertAndSend(exc, rout, fattura)

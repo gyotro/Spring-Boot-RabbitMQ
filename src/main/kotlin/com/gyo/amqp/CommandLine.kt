@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class CommandLine: CommandLineRunner {
 
+    /*
     @Autowired
     lateinit var connectionFactory: ConnectionFactory
 
@@ -58,6 +59,11 @@ class CommandLine: CommandLineRunner {
     }
 
 /*    @Bean
-    fun rabbitAdmin(): RabbitAdmin = RabbitAdmin( rabbitTemplate.connectionFactory )*/
+    fun rabbitAdmin(): RabbitAdmin = RabbitAdmin( rabbitTemplate.connectionFactory )
+    */
+     */
+    override fun run(vararg args: String?) {
+
+    }
 
 }
