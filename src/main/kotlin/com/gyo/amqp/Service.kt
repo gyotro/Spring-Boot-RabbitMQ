@@ -56,6 +56,7 @@ class Service(): RabbitQueueService {
             rabbitAdmin.declareQueue(queue)
             rabbitAdmin.declareExchange(topicInitializer(exchangeName));
             rabbitAdmin.declareBinding(this.binding(queue, topicInitializer(exchangeName), routingKey))
+
  //           addQueueToListener(exchangeName, queueName)
         }
 
